@@ -38,18 +38,18 @@ install_neofetch() {
 install_openjdk() {
     echo "Installing OpenJDK 22..."
     wget https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-x64_bin.tar.gz
-    tar -xzvf openjdk-17_linux-x64_bin.tar.gz
+    tar -xzvf openjdk-22.0.1_linux-x64_bin.tar.gz
     echo "Setting environment variables for OpenJDK 22..."
-    echo "export JAVA_HOME=$(pwd)/jdk-17" >> ~/.bashrc
+    echo "export JAVA_HOME=$(pwd)/jdk-22" >> ~/.bashrc
     echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
     source ~/.bashrc
-    echo "OpenJDK 17 installation complete."
+    echo "OpenJDK 22 installation complete."
     
     read -p "Do you want to install Minecraft server.jar? (yes/no): " install_minecraft
     if [ "$install_minecraft" == "yes" ]; then
-        read -p "Enter the link to the server.jar (type 'none' or leave blank for default 1.20.2): " server_jar_link
+        read -p "Enter the link to the server.jar (type 'none' or leave blank for default 1.21.4): " server_jar_link
         if [ -z "$server_jar_link" ] || [ "$server_jar_link" == "none" ]; then
-            server_jar_link="https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar"
+            server_jar_link="https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/133/downloads/paper-1.21.4-133.jar"
         fi
         wget "$server_jar_link" -O server.jar
         read -p "Do you accept the Minecraft EULA? (type 'yes' to accept): " accept_eula
